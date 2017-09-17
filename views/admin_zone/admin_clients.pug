@@ -1,0 +1,119 @@
+extends admin_layout.pug
+block content
+    .container
+        .admin-icons.text-center.py-2
+            a(href="/admin").mr-2.active.text-warning Volver al panel de administración
+                i.fa.fa-2x.fa-fw.fa-cogs
+            a(href="/admin/").ml-1
+                i.fa.fa-2x.fa-fw.fa-envelope
+                span.badge.badge-danger.py-1 200
+    div.dropdown-divider
+    .container
+        .row
+            .col-12  
+                table.table.table-responsive.table-bordered.table-striped
+                    thead 
+                        tr
+                            th(scope="row").text-success.font-weight-bold *
+                            th Nombre Completo
+                            th DNI cliente
+                            th Código postal
+                            th Teléfonos contacto
+                            th Email de contacto
+                            th Fecha de creación
+                    tbody
+                        each client, index in clients
+                            tr
+                                td
+                                    button.btn(type='button', data-toggle='modal', data-target='#client' + index).alone-buttons
+                                        i.fa.fa-pencil.fa-fw.text-warning
+                                td= client.personal.name
+                                td= client.personal.DNI
+                                td= client.personal.postal_code
+                                td= client.contact.phoneOne + "/" + client.contact.phoneTwo        
+                                td= client.contact.email
+                                td= client.createdAt
+
+
+    #client0.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#exampleModalLabel.modal-title Modal title
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') ×
+                .modal-body
+                    .container-fluid
+                        .row
+                            .col-12
+                                .card
+                                    .card-header
+                                        h4.card-title.text-warning.text-center.mb-2.py-1.px-2 Nombre cliente
+                                        .dropdown-divider
+                                        h3.text-success.mb-2.py-2.px-1 Datos generales
+                                        div.client-data.d-flex.flex-column
+                                            span.alert.alert-warning 
+                                                strong.mr-2 DNI:
+                                                h6.card-subtitle.my-2.text-muted.d-inline 45959592-X
+                                            span.alert.alert-warning 
+                                                strong.mr-2 LOCALIDAD:
+                                                h6.card-subtitle.my-2.text-muted.d-inline Toledo interno
+                                            span.alert.alert-warning 
+                                                strong.mr-2 PROVINCIA:
+                                                h6.card-subtitle.my-2.text-muted.d-inline Toledo 
+                                            span.alert.alert-warning 
+                                                strong.mr-2 DIRECCIÓN:
+                                                h6.card-subtitle.my-2.text-muted.d-inline C/De la rosa martinez 1ºDer
+                                            span.alert.alert-warning 
+                                                strong.mr-2 CÓDIGO POSTAL:
+                                                h6.card-subtitle.my-2.text-muted.d-inline 45001
+                                            span.alert.alert-warning 
+                                                strong.mr-2 FECHA NACIMIENTO:
+                                                h6.card-subtitle.my-2.text-muted.d-inline 1987-03-24
+                                            span.alert.alert-warning 
+                                                strong.mr-1 EDAD:
+                                                h6.card-subtitle.my-2.text-muted.d-inline 30 años
+                                    .card-block.client-card
+                                        .container
+                                            .row
+                                                .col-12.col-sm-8.offset-sm-2
+                                                    h2.text-center.text-success Datos de contacto
+                                                    table.table.table-responsive.table-hover.table-small
+                                                        thead
+                                                            tr
+                                                                th 
+                                                                    i.fa.fa-fw.fa-envelope
+                                                                th 
+                                                                    i.fa.fa-fw.fa-2x.fa-mobile
+                                                                th 
+                                                                    i.fa.fa-fw.fa-2x.fa-mobile
+                                                        tbody
+                                                            tr
+                                                                td
+                                                                    a(href="mailto:") mail@ejemplo.com
+                                                                td 
+                                                                    a(href="tel:+34") 654422212
+                                                                td 
+                                                                    a(href="tel:+34") 668231289
+                                        h3.text-center.py-2.px-1 Datos de interés
+                                        .dropdown-divider
+                                        p.card-text Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur quisquam fugit nostrum est delectus amet recusandae minus ut consectetur alias nobis voluptatem voluptatibus molestias consequuntur quia, labore laudantium pariatur velit.
+                                        .dropdown-divider
+
+                                        .d-flex.justify-content-around.align-items-center
+                                            h2.text-center.py-2.px-1 Mascotas
+                                            form(action="/admin/pet/new" method="POST")
+                                                button(type="submit" data-toggle="tooltip" data-placement="left" title="Añadir nueva mascota").alone-buttons
+                                                    i.fa.fa-2x.fa-fw.fa-plus-circle.text-success
+
+                                        div.list.group.list-group-flush
+                                            button(type="button").list-group-item.list-group-item-action Mascota 1
+                                                i.fa.fa-2x.fa-pencil-square-o.fa-fw.ml-5.text-warning
+
+                                    .card-footer.d-flex.justify-content-center.align-items-center
+                                        button.btn.alone-buttons
+                                            i.fa.fa-2x.fa-fw.fa-trash.text-danger
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cerrar
+                    button.btn.btn-primary(type='button') Guardar cambios
+

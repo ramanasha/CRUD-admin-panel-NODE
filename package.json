@@ -1,0 +1,46 @@
+{
+  "name": "landing_page_miriam",
+  "version": "0.2.0",
+  "description": "The landing page of Miriam to show her services",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev-start": "concurrently \"gulp\" \"nodemon server.js\" "
+  },
+  "keywords": [
+    "landing_page",
+    "adiestramiento",
+    "canino",
+    "psicologa_canina",
+    "miriam"
+  ],
+  "author": "D.Romero <romerodeveloper@techie.com> (https://javascrupt.com)",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.1",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "mongoose": "^4.11.11",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.0-rc.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "concurrently": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-babel": "^7.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^3.3.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-uglify": "^3.0.0",
+    "nodemon": "^1.12.0",
+    "pump": "^1.0.2"
+  }
+}

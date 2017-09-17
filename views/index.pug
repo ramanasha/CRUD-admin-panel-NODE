@@ -1,0 +1,55 @@
+extends layout.pug
+
+block content
+    header.main-header
+        .container-fluid
+            .row
+                .col-12
+                    h1.hidden-sm-up.display-5.text-warning.text-center.font-weight-bold #{profile.title}
+                    h1.hidden-xs-down.display-4.text-warning.text-center.font-weight-bold #{profile.title}
+
+    include partials/navbar.pug
+
+    section.main-profile
+        .container
+            .row
+                .col-8.offset-2.offset-sm-0.col-sm.col-lg-4
+                    figure.wrapper
+                        img.img-fluid.img-thumbnail(src= profile.imageURL, alt='profile_image')
+                        .middle
+                            .alert.alert-warning Miriam Rico
+                .col-10.offset-1.offset-sm-0.col-sm.col-lg-6.offset-lg-1
+                    p.profile-text.text-justify.mb-4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus sit molestiae delectus ratione repellendus natus, quis similique suscipit reprehenderit corrupti dolorem aperiam culpa vitae ducimus eum labore, ipsum aliquam officiis.
+                    .text-center.profile-wrapper
+                        a.email(href='mailto:' + contact.email)= contact.email
+                        .dropdown-divider
+                        button.btn.btn-warning(data-toggle='modal', data-target='#email-form', type='button') ¡Dejame un mensaje!
+                        .dropdown-divider
+                        p.text-white O contactáme al siguiente teléfono:            
+                        i.fa.fa-2x.fa-fw.fa-mobile(aria-hidden='true')
+                        i.fa.fa-2x.fa-fw.fa-whatsapp(aria-hidden='true') 
+                        a.mx-3.phone-number.text-warning(href='tel:+34' + contact.phone.replace(/-/g, ''))= contact.phone
+
+                    // Modal
+                    #email-form.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+                        .modal-dialog(role='document')
+                            .modal-content
+                                .modal-header
+                                    h5#exampleModalLabel.modal-title Hazme saber si quieres mas información
+                                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                        span(aria-hidden='true') &times;
+                                .modal-body
+                                    form(action='/contact', method='POST')
+                                        .form-group
+                                            input.form-control(name='emailFromUser', type='email', required='', placeholder='Tu email para responderte')
+                                        .form-group
+                                            textarea.form-control(required='', placeholder='El asunto de tu mensaje aquí...', name='emailMessage', id='', cols='30', rows='10')
+                                        .modal-footer
+                                            button.btn.btn-outline-danger(type='button', data-dismiss='modal') Volver
+                                            button.btn.btn-outline-warning(type='submit') Enviar email
+    include partials/features.pug
+    include partials/benefits.pug
+    include partials/services.pug
+
+block append scripts
+    script(src='./js/scrolling.js')

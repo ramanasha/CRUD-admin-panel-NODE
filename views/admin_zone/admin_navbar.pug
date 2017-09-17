@@ -1,0 +1,67 @@
+.container-fluid.px-0.mb-3
+    nav.navbar.navbar-inverse.navbar-toggleable.index-navbar.hidden-sm-up
+        button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#mainDropdown', aria-controls='mainDropdown', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        a.navbar-brand(href='/admin') Miriam Rico
+        #mainDropdown.collapse.navbar-collapse
+            ul.navbar-nav.ml-auto.text-center
+                li.nav-item.active
+                    a.icon.nav-link(href='/admin/profile' title="Sección Perfil") 
+                        i.fa.fa-fw.fa-user-circle.text-white
+                        span.ml-1 Modificar Perfil
+                li.nav-item
+                    a.icon.nav-link(href='/admin/services' title="Sección Servicios") 
+                        i.fa.fa-fw.fa-table.text-white
+                        span.ml-1 Administrar Servicios
+                li.nav-item
+                    a.icon.nav-link(href='/admin/clients' title="Base de datos clientes")
+                        i.fa.fa-fw.fa-users.text-white
+                        span.ml-1 Clientes
+
+    .row
+        .col-sm-4.sidebar.hidden-xs-down.col-md-3.col-xl-2
+            nav
+                h1.site-title.text-center
+                    a(href="/admin") Brand
+                ul.nav.nav-pills.d-flex.flex-column
+                    li.nav-item
+                        a(href="/admin").nav-link.active 
+                            i.fa.fa-fw.fa-home 
+                            span.ml-1 Panel inicio
+                    li.nav-item
+                        a(href="/admin/profile").nav-link
+                            i.fa.fa-fw.fa-user-circle.text-white
+                            span.ml-1 Modificar perfil
+
+                    li.nav-item
+                        a(href="/admin/services").nav-link 
+                            i.fa.fa-fw.fa-table.text-white
+                            span.ml-1 Administrar servicios
+                    li.nav-item
+                        a.icon.nav-link(href='/admin/clients')
+                            i.fa.fa-fw.fa-users.text-white
+                            span.ml-1 Clientes
+
+        .col-12.col-sm-8.offset-sm-4.col-lg-6
+            header.admin-header
+
+                .admin-title-mobile.hidden-md-up
+                    h1.text-center.my-3.py-2 Panel de administración
+                    div.mt-1.mb-2.py-2.d-flex.justify-content-center.align-items-center
+                        img.mr-2.img-img-rounded.admin-image(src="", alt="admin_image")
+                        span.ml-1 Nombre usuario
+                    .admin-icons.text-center.py-2
+                        a(href="/").mr-2
+                            i.fa.fa-2x.fa-fw.fa-home
+                        a(href="/admin/messages").ml-1
+                            i.fa.fa-2x.fa-fw.fa-envelope
+                            span.badge.badge-danger.py-1 0
+                        a(href="/logout").ml-2
+                            i.fa.fa-2x.fa-fw.fa-sign-out
+                .admin-title.hidden-sm-down.mt-1.mb-4.py-2.d-flex.justify-content-around.align-items-center
+                    h1.my-3.py-2 Panel de administración
+                    img.img-img-rounded.admin-image(src="", alt="admin_image")
+                    span Nombre usuario
+            .dropdown-divider
+
+block footer

@@ -1,0 +1,44 @@
+extends admin_layout.pug
+block append content
+    .container
+        .row
+            .col-12.col-sm-8.offset-sm-4.col-lg-6
+                h2.text-center.text-white.mb-2.text-danger.font-weight-bold Previsualización de la Tabla
+                .newService.d-flex.justify-content-end
+                    form(action="/admin/services/new" method="POST")
+                        button(type="submit" data-toggle="tooltip" data-placement="left" title="Nuevo servicio").alone-buttons
+                            i.fa.fa-2x.fa-fw.fa-plus-circle.text-success
+                table.table.table-responsive.table-hover
+                    thead
+                        tr
+                            th 
+                                i.fa.fa-fw.fa-edit.text-warning
+                            th Servicio
+                            th.text-center ¿De qué trata?
+                    tbody
+                        each service, index in services
+                            tr
+                                td(scope="row")
+                                  form(action="/admin/services/delete/" + index, method="POST")
+                                    button(type="submit").alone-buttons
+                                        i.fa.fa-fw.fa-trash.text-danger
+                                td #{service.nameService}
+                                td #{service.description}
+
+    .container.col-12.col-sm-8.offset-sm-4.col-lg-6.mt-3
+        .card.edit-profile
+            .card-block
+                h4.card-title.text-danger Servicios ofrecidos al cliente
+                h6.card-subtitle.mb-2.text-muted Añadir, quitar o modificar nuevos servicios...
+                div.dropdown-divider
+
+                each service,index in services 
+                    form(action="/admin/services/edit/" + index,  method="POST").my-2.px-1.py-2
+                        .form-group
+                            input(name="serviceName" type="text" placeholder="Nombre del servicio" value= service.nameService).form-control
+                        .form-group
+                            textarea(name="serviceDescription", cols="25", rows="5" placeholder="Descripcion del servicio").form-control= service.description
+                        .dropdown-divider
+                        button(type="submit").btn.btn-outline-danger.btn-block.btn-lg Actualizar Servicio
+                            i.fa.fa-2x.fa-fw.fa-check
+                    .dropdown-divider

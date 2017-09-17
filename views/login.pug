@@ -1,0 +1,14 @@
+extends layout.pug
+block content
+    .dropdown-divider
+    .container.my-5
+        .row
+            .col-12.col-md-6.offset-md-3
+                form(action='/login', method='post')
+                    .form-group
+                        input.form-control(placeholder='Tu nombre de usuario', type='text', name='username')
+                    .form-group
+                        input.form-control(placeholder='Tu contraseña', type='password', name='password')
+                    .form-group
+                        .d-flex.justify-content-end
+                            button.btn.btn-warning(type='submit') Entrar

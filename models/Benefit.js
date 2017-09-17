@@ -1,0 +1,1 @@
+"use strict";var mongoose=require("mongoose"),Schema=mongoose.Schema,BenefitSchema=new Schema({title:{type:String,trim:!0,default:"Aqui va el titulo"},imageURL:String});module.exports=mongoose.model("Benefit",BenefitSchema);

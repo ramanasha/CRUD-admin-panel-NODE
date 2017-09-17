@@ -1,0 +1,13 @@
+.container-fluid
+    nav.navbar.navbar-inverse.navbar-toggleable.index-navbar
+        button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#mainDropdown', aria-controls='mainDropdown', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        a.navbar-brand(href='/') Marca
+        #mainDropdown.collapse.navbar-collapse
+            ul.navbar-nav.ml-auto.text-center
+                li.nav-item.active
+                    a.icon.nav-link(href='#features' title="¿Qué es?") ¿Qué es?
+                li.nav-item
+                    a.icon.nav-link(href='#benefits' title="Beneficios") Beneficios
+                li.nav-item
+                    a.icon.nav-link(href='#services' title="Servicios") Servicios

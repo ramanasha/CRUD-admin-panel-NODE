@@ -1,0 +1,90 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    z-index: 1000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: 1px solid #eee;
+    background: #7376df;
+}
+
+h1.site-title {
+    font-size: 30px;
+    line-height: 1;
+    padding: 0.5em;
+    a {
+        text-decoration: none;
+        color: white;
+    }
+}
+
+div.admin-icons {
+    a {
+        i.fa-envelope {
+            color: #ff0;
+        }
+    }
+    span.badge-danger {
+        margin-left: -.5%;
+    }
+}
+
+.edit-profile {
+    img {
+        max-width: 300px;
+        max-height: 250px;
+    }
+    i.fa-check {
+        color: green;
+        transition: 0.4s ease;
+    }
+    button.btn-block:hover i.fa-check {
+        color: #adff2f;
+    }
+}
+
+i.fa-plus-circle {
+    transition: 0.3s ease;
+    &:hover {
+        transform: scale(1.1);
+        color: #adff2f !important;
+    }
+}
+
+button.alone-buttons {
+    border: none;
+    background: none;
+    cursor: pointer;
+    i {
+        transition: 0.3s ease;
+        &:hover {
+            transform: scale(1.2);
+            color: red;
+        }
+    }
+}
+
+.client-card {
+    color: black;
+    padding: 0.5rem;
+}
+
+.card-footer i {
+    cursor: pointer;
+}
+
+.table {
+    th,
+    td {
+        text-align: center;
+        vertical-align: top;
+    }
+    th.text-success {
+        font-size: 30px;
+    }
+}

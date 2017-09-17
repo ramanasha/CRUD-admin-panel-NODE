@@ -1,0 +1,28 @@
+extends admin_layout.pug
+block append content
+    .container.col-12.col-sm-8.offset-sm-4.col-lg-6
+        .card.edit-profile
+            .card-block
+                h4.card-title.text-danger Información del perfil
+                h6.card-subtitle.mb-2.text-muted Imagen, descripcion, datos de contacto...
+                div.dropdown-divider
+                form(action="/admin/profile/edit" method="POST").my-2.px-1.py-2
+                    .form-group
+                        input(name="mainTitle" type="text" placeholder="Titulo principal de la pagina" value= profile.title).form-control
+                    .form-group
+                        input(name="profile_img" type="text" placeholder="URL de la imagen de perfil" value= profile.imageURL).form-control
+                        figure.text-center.mt-1
+                            img(src= profile.imageURL, alt="profile_image_to_edit").img-fluid.img-thumbnail
+                    .form-group
+                        textarea(name="profile_description", cols="25", rows="5" placeholder="Descripcion de tu persona").form-control= profile.description
+                    .input-group
+                        span#email_icon.input-group-addon
+                            i.fa.fa-fw.fa-envelope
+                        input(name="profile_email" type="email" placeholder="Email de contacto" aria-describedby="email_icon" value= contact.email).form-control
+                    .input-group
+                        span#phone_icon.input-group-addon
+                            i.fa.fa-fw.fa-phone
+                        input(name="profile_phone" type="text" placeholder="Teléfono de contacto" aria-describedby="phone_icon" value= contact.phone).form-control
+                    .dropdown-divider
+                    button(type="submit").btn.btn-outline-danger.btn-block.btn-lg Actualizar datos
+                        i.fa.fa-2x.fa-fw.fa-check

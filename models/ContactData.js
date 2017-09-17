@@ -1,0 +1,1 @@
+"use strict";var mongoose=require("mongoose"),Schema=mongoose.Schema,DataSchema=new Schema({email:{type:String,trim:!0,lowercase:!0,required:!0},phone:{type:String,trim:!0,required:!0,default:"676-016-211"}});module.exports=mongoose.model("Data",DataSchema);

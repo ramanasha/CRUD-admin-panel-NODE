@@ -1,0 +1,295 @@
+$primary-color: #ffa84c;
+$standart-border: 1px solid;
+
+/********************
+  GENERAL STYLES
+******************/
+
+body {
+    background: #4c4c4c;
+    background: -moz-linear-gradient(top, rgba(76, 76, 76, 1) 0, rgba(102, 102, 102, 1) 9%, rgba(102, 102, 102, 1) 9%, rgba(89, 89, 89, 1) 16%, rgba(71, 71, 71, 1) 20%, rgba(0, 0, 0, 1) 37%, rgba(0, 0, 0, 1) 37%, rgba(17, 17, 17, 1) 60%, rgba(44, 44, 44, 1) 69%, rgba(44, 44, 44, 1) 69%, rgba(43, 43, 43, 1) 76%, rgba(28, 28, 28, 1) 94%, rgba(19, 19, 19, 1) 100%);
+    background: -webkit-linear-gradient(top, rgba(76, 76, 76, 1) 0, rgba(102, 102, 102, 1) 9%, rgba(102, 102, 102, 1) 9%, rgba(89, 89, 89, 1) 16%, rgba(71, 71, 71, 1) 20%, rgba(0, 0, 0, 1) 37%, rgba(0, 0, 0, 1) 37%, rgba(17, 17, 17, 1) 60%, rgba(44, 44, 44, 1) 69%, rgba(44, 44, 44, 1) 69%, rgba(43, 43, 43, 1) 76%, rgba(28, 28, 28, 1) 94%, rgba(19, 19, 19, 1) 100%);
+    background: linear-gradient(to bottom, rgba(76, 76, 76, 1) 0, rgba(102, 102, 102, 1) 9%, rgba(102, 102, 102, 1) 9%, rgba(89, 89, 89, 1) 16%, rgba(71, 71, 71, 1) 20%, rgba(0, 0, 0, 1) 37%, rgba(0, 0, 0, 1) 37%, rgba(17, 17, 17, 1) 60%, rgba(44, 44, 44, 1) 69%, rgba(44, 44, 44, 1) 69%, rgba(43, 43, 43, 1) 76%, rgba(28, 28, 28, 1) 94%, rgba(19, 19, 19, 1) 100%);
+    background-attachment: fixed;
+    color: #fff;
+}
+
+body,
+button {
+    font-family: Dosis, Georgia, serif;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+table {
+    margin: 2em 0;
+}
+
+label {
+    color: black;
+}
+
+
+/******************
+ MAIN PROFILE SECTION
+*********************/
+
+section.main-profile {
+    padding: 1em;
+    figure.wrapper {
+        &:hover .middle {
+            opacity: 1;
+        }
+        &:hover img {
+            opacity: 0.3;
+        }
+        .middle {
+            transition: .5s ease;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+        img {
+            transition: 0.4s ease all;
+            &:hover {
+                border: 1px solid black;
+                -webkit-box-shadow: 10px -12px 15px -9px rgba(0, 0, 0, 0.75);
+                -moz-box-shadow: 10px -12px 15px -9px rgba(0, 0, 0, 0.75);
+                box-shadow: 10px -12px 15px -9px rgba(0, 0, 0, 0.75);
+            }
+        }
+    }
+    .profile-wrapper {
+        border-right: $standart-border white;
+        border-left: $standart-border white;
+        padding: .8em;
+    }
+    a.phone-number {
+        font-size: 18px;
+    }
+    .profile-text {
+        font-size: 18px;
+        padding: .5em;
+        margin: .5em 0;
+        border-left: $standart-border $primary-color;
+    }
+    .modal {
+        color: #000
+    }
+    .modal-content {
+        background-color: #000;
+        color: $primary-color;
+        border: $standart-border #fff;
+    }
+    .modal .close {
+        font-size: 30px;
+        font-weight: 700;
+        color: red!important;
+    }
+    a.email {
+        padding: .5em;
+    }
+    i.fa-whatsapp {
+        color: #4dc247;
+    }
+    i.fa-mobile {
+        color: $primary-color;
+    }
+}
+
+
+/*****************
+ INDEX NAVBAR 
+*****************/
+
+nav.index-navbar {
+    background: #b5bdc8;
+    background: -moz-linear-gradient(top, #b5bdc8 0%, #828c95 36%, #28343b 100%);
+    background: -webkit-linear-gradient(top, #b5bdc8 0%, #828c95 36%, #28343b 100%);
+    background: linear-gradient(to bottom, #b5bdc8 0%, #828c95 36%, #28343b 100%);
+}
+
+
+/****************
+ NAVBAR AND ITEMS
+******************/
+
+.nav-item,
+.nav a {
+    transition: .4s ease all;
+}
+
+.nav a {
+    color: #adff2f;
+}
+
+.nav a i.fa-envelope {
+    color: #ff0;
+}
+
+.nav-item:hover {
+    -webkit-box-shadow: 7px 10px 5px 0 rgba(0, 0, 0, .75);
+    -moz-box-shadow: 7px 10px 5px 0 rgba(0, 0, 0, .75);
+    box-shadow: 7px 10px 5px 0 rgba(0, 0, 0, .75);
+}
+
+header.main-header {
+    padding: 1em;
+    border-bottom: $standart-border $primary-color;
+}
+
+.nav-tabs a,
+table th {
+    font-size: 22px;
+}
+
+.features-zone {
+    padding: .5em;
+}
+
+.feature {
+    i {
+        margin: .5em;
+    }
+    p {
+        font-family: Oxygen, Verdana, serif;
+    }
+}
+
+div.list-wrapper {
+    width: 100%;
+    height: 100%;
+    border: $standart-border #fff;
+    padding: 1em;
+    h3,
+    li {
+        padding: .5em;
+    }
+}
+
+a.email {
+    font-size: 18px;
+    color: $primary-color;
+    font-weight: 700;
+    line-height: 1.5em;
+    margin: 1em;
+}
+
+div.contact {
+    margin-top: 20%;
+}
+
+
+/******************
+      FEATURES 
+******************/
+
+.container-fluid.features {
+    border-top: $standart-border $primary-color;
+    border-bottom: $standart-border $primary-color;
+    transition: 0.4 ease all;
+    &:hover {
+        padding: .5em;
+        -webkit-box-shadow: 7px 10px 5px 0 rgba(0, 0, 0, .75);
+        -moz-box-shadow: 7px 10px 5px 0 rgba(0, 0, 0, .75);
+        box-shadow: 7px 10px 5px 0 rgba(0, 0, 0, .75);
+    }
+}
+
+
+/*****************
+    BENEFITS
+******************/
+
+.benefits {
+    border-bottom: $standart-border $primary-color;
+    img {
+        max-width: 350px;
+        max-height: 219px;
+    }
+    figure {
+        position: relative;
+        &:hover .middle {
+            opacity: 1;
+        }
+        &:hover img {
+            opacity: 0.3;
+        }
+        .middle {
+            transition: .5s ease;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+        img {
+            transition: 0.4s ease all;
+        }
+    }
+}
+
+
+/***************
+    FOOTER 
+****************/
+
+footer {
+    i.fa-facebook,
+    i.fa-twitter,
+    i.fa-youtube,
+    i.fa-linkedin {
+        transition: 0.3 ease all;
+    }
+    i.fa-facebook {
+        color: #3b5998;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    i.fa-twitter {
+        color: #55acee;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    i.fa-youtube {
+        color: #ff0000;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    i.fa-linkedin {
+        color: #007bb5;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}
+
+
+/****************
+ MESSAGES ZONE
+**************/
+
+.readed {
+    transition: 0.3s ease all;
+    opacity: 0.7;
+    color: gray;
+}
+
+.readed:hover {
+    opacity: 1;
+}

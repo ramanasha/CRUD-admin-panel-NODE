@@ -1,0 +1,1 @@
+"use strict";var mongoose=require("mongoose"),Schema=mongoose.Schema,ContactSchema=new Schema({email:{type:String,trim:!0,lowercase:!0,required:!0},message:String,createdAt:{type:Date,default:Date.now},unreaded:{type:Boolean,default:!0},classReaded:{type:String,default:""}});module.exports=mongoose.model("Contact",ContactSchema);

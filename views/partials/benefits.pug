@@ -1,0 +1,8 @@
+.container.benefits.py-4#benefits
+    .row.d-flex.justify-content-around
+        each benefit in benefits
+            figure
+                img(src= benefit.imageURL alt= benefit.title).img-fluid.rounded
+                .middle 
+                    div(role="alert").alert.alert-success
+                        h4.alert-heading #{benefit.title}
