@@ -1,0 +1,34 @@
+extends admin_layout.pug
+block append content
+    .container
+        .row
+            .col-12.col-sm-8.offset-sm-4.col-lg-6
+                each message, index in messages
+                    .dropdown-divider
+                    div(class="card-block " + message.classReaded )
+                        ul.list-group
+                            li.list-group-item.list-group-item-success.d-flex.justify-content-between
+                                strong Received from:
+                                span.ml-3.font-italic= message.email
+                                form.ml-4.hidden-xs-down(action='/contact/remove/' + index, method='POST')
+                                    button.btn.btn-danger(type='submit')
+                                        i.fa.fa-fw.fa-trash(aria-hidden='true')
+                            li.list-group-item.list-group-item-warning.d-flex.justify-content-around
+                                strong At: 
+                                span.ml-3 #{message.createdAt.toDateString()} ~ #{message.createdAt.toLocaleTimeString()}
+                                form.ml-4.hidden-sm-up(action='/contact/remove/' + index, method='POST')
+                                    button.btn.btn-danger(type='submit')
+                                        i.fa.fa-fw.fa-trash(aria-hidden='true')
+                        .card
+                            .card-block
+                                p.font-weight.text-justify= message.message
+                                .d-flex.justify-content-end
+                                    span.font-weight-bold.font-italic.text-danger.mr-2 Marcar como leido
+                                    form(action='/contact/readed/' + index, method='POST')
+                                        button.btn.btn-warning.btn-sm(type='submit')
+                                            i.fa.fa-check-square-o(aria-hidden='true')
+block append scripts
+    script. 
+        $('div.card').on('click', 'button.btn-sm', function() {
+            $(this).removeClass('btn-warning').addClass('btn-success disabled');
+        })

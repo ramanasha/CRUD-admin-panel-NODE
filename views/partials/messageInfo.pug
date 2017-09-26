@@ -1,0 +1,14 @@
+extends ../layout.pug
+block content
+    .container.contact
+        .row
+            .col-12.col-md-6.offset-md-3
+                h1.text-warning.display-4  ¡Gracias por depositar tu confianza en mi!
+                .dropdown-divider
+                h2 Te responderé el mensaje lo antes posible
+                h5.font-italic.mt-5  Volviendo a la página principal...
+
+    script. 
+        setTimeout(() => {
+            window.location.replace('/');
+        },2500);

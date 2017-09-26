@@ -28,6 +28,12 @@ div.admin-icons {
         i.fa-envelope {
             color: #ff0;
         }
+        i.fa-home {
+            color: #5dff51;
+        }
+        i.fa-sign-out {
+            color: #fff;
+        }
     }
     span.badge-danger {
         margin-left: -.5%;
@@ -69,7 +75,7 @@ button.alone-buttons {
     }
 }
 
-.client-card {
+.card {
     color: black;
     padding: 0.5rem;
 }
@@ -87,4 +93,19 @@ button.alone-buttons {
     th.text-success {
         font-size: 30px;
     }
+}
+
+
+/****************
+ MESSAGES ZONE
+**************/
+
+.readed {
+    transition: 0.3s ease all;
+    opacity: 0.7;
+    color: gray;
+}
+
+.readed:hover {
+    opacity: 1;
 }

@@ -35,7 +35,8 @@ db.then(() => {
     //Routes
     const indexRoute = require('./routes/index'),
         loginRoute = require('./routes/login'),
-        adminRoute = require('./routes/admin');
+        adminRoute = require('./routes/admin'),
+        messagesRoute = require('./routes/messages');
 
     //Middleware to authenticate admin routes
     const loggedIn = require('./middlewares/authentication');
@@ -43,7 +44,8 @@ db.then(() => {
 
     app.use(indexRoute)
         .use(loginRoute)
-        .use(adminRoute);
+        .use(adminRoute)
+        .use(messagesRoute);
 
     //Server listener
     let port = process.env.PORT || 8000;

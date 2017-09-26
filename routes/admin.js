@@ -2,12 +2,27 @@ const router = require('express').Router(),
     Profile = require('../models/Profile'),
     ContactData = require('../models/ContactData'),
     Services = require('../models/Services'),
-    Client = require('../models/Client');
+    Client = require('../models/Client'),
+    Contact = require('../models/Contact');
 
-let servicesData = [];
+let servicesData = [],
+    clientsData = [];
 
 router.get('/admin', (request, response, next) => {
-    response.render('admin_zone/admin_home')
+    let newMessages = 0;
+    Contact.find({}, (error, result) => {
+        if (error) return next(error);
+    }).then(messages => {
+        messagesLength = messages.length;
+        for (let i = 0; i < messagesLength; i++) {
+            if (messages[i].unreaded) {
+                newMessages++;
+            }
+        }
+        response.render('admin_zone/admin_home', {
+            newMessages: newMessages,
+        })
+    })
 })
 
 /**
@@ -95,8 +110,6 @@ router.post('/admin/services/delete/:index', (request, response, next) => {
  * CLIENT ADMIN ZONE
  */
 router.get('/admin/clients', (request, response, next) => {
-    let clientsData = [];
-
     Client.find({}, (error, clients) => {
         if (error) return next(error);
     }).then(clients => {
@@ -105,6 +118,16 @@ router.get('/admin/clients', (request, response, next) => {
             clients: clientsData
         })
     })
+})
+
+
+router.post('/admin/clients/remove/:index', (request, response, next) => {
+    Client.findByIdAndRemove(clientsData[request.params.index]._id,
+        (error, client) => {
+            if (error) return next(error);
+            console.log(`REMOVED CLIENT WITH SUCCESS: ${JSON.stringify(client,undefined,2)}`);
+            response.redirect('/admin/clients')
+        })
 })
 
 router.get('/logout', function(request, response) {

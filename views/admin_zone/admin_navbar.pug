@@ -45,23 +45,17 @@
         .col-12.col-sm-8.offset-sm-4.col-lg-6
             header.admin-header
 
-                .admin-title-mobile.hidden-md-up
-                    h1.text-center.my-3.py-2 Panel de administración
+                .admin-title-mobile
+                    h1.text-center.mt-3.mb-1.py-2 Panel de administración
                     div.mt-1.mb-2.py-2.d-flex.justify-content-center.align-items-center
-                        img.mr-2.img-img-rounded.admin-image(src="", alt="admin_image")
-                        span.ml-1 Nombre usuario
                     .admin-icons.text-center.py-2
-                        a(href="/").mr-2
+                        a(href="/" title="Volver al inicio").mr-2
                             i.fa.fa-2x.fa-fw.fa-home
-                        a(href="/admin/messages").ml-1
+                        a(href="/admin/messages" title="Mensajes recibidos").ml-1
                             i.fa.fa-2x.fa-fw.fa-envelope
-                            span.badge.badge-danger.py-1 0
-                        a(href="/logout").ml-2
+                            span.badge.badge-danger.py-1= newMessages
+                        a(href="/logout" title="Cerrar la sesión").ml-2
                             i.fa.fa-2x.fa-fw.fa-sign-out
-                .admin-title.hidden-sm-down.mt-1.mb-4.py-2.d-flex.justify-content-around.align-items-center
-                    h1.my-3.py-2 Panel de administración
-                    img.img-img-rounded.admin-image(src="", alt="admin_image")
-                    span Nombre usuario
             .dropdown-divider
 
 block footer
