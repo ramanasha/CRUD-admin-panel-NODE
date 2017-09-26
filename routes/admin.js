@@ -110,6 +110,29 @@ router.post('/admin/services/delete/:index', (request, response, next) => {
  * CLIENT ADMIN ZONE
  */
 router.get('/admin/clients', (request, response, next) => {
+    /*
+        new Client().create({
+            personal: {
+                name: "Antonio orozco candidato",
+                birthday: new Date('2000-04-16'),
+                address: "C/ cipriano pentecostes edificio 5",
+                DNI: "44567890x",
+                locality: "Toledo interno",
+                province: "Toledo",
+                postal_code: "43001",
+            },
+            contact: {
+                email: "cipriano@toledo.com",
+                phoneOne: "657874321",
+                phoneTwo: "653312344"
+            },
+            comment: "Un tio de pueblo"
+        }, (error, client) => {
+            if (error) return next(error)
+            console.log(client);
+        })
+    */
+
     Client.find({}, (error, clients) => {
         if (error) return next(error);
     }).then(clients => {

@@ -3,6 +3,8 @@ div(id="client" + index, tabindex='-1', role='dialog', aria-labelledby='exampleM
         .modal-content
             .modal-header
                 h5.modal-title.text-danger= client._id 
+                span.mx-2.text-success
+                    i.fa.fa-2x.fa-fw.fa-users
                 button.close(type='button', data-dismiss='modal', aria-label='Close')
                     span(aria-hidden='true') &times;
             .modal-body
@@ -36,6 +38,9 @@ div(id="client" + index, tabindex='-1', role='dialog', aria-labelledby='exampleM
                                         span.alert.alert-warning 
                                             strong.mr-4 EDAD:
                                             h6.card-subtitle.my-2.text-muted.d-inline= client.personal.age
+                                        span.alert.alert-warning 
+                                            strong.mr-4 GÉNERO:
+                                            h6.card-subtitle.my-2.text-muted.d-inline= client.personal.gender
                                 .card-block.client-card
                                     .container
                                         .row
@@ -61,6 +66,12 @@ div(id="client" + index, tabindex='-1', role='dialog', aria-labelledby='exampleM
                                     h3.text-center.py-2.px-1 Datos de interés
                                     .dropdown-divider
                                     p.card-text= client.comment
+                                    .client-attitude.py-2.px-1
+                                        span.mr-4.font-weight-bold Carácter: 
+                                            mark.font-weight-normal.font-italic= client.attitude.nature
+                                        span.mr-4.font-weight-bold Temperamento:
+                                            mark.font-weight-normal.font-italic= client.attitude.temperament
+
                                     .dropdown-divider
 
                                     .d-flex.justify-content-around.align-items-center

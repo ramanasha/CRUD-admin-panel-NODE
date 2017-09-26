@@ -9,28 +9,6 @@ router.get('/', (request, response, next) => {
     let profileData = {},
         benefitData = {},
         servicesData = {};
-    /*
-        client.create({
-            personal: {
-                name: "Antonio orozco candidato",
-                birthday: new Date('2000-04-16'),
-                address: "C/ cipriano pentecostes edificio 5",
-                DNI: "44567890x",
-                locality: "Toledo interno",
-                province: "Toledo",
-                postal_code: "43001",
-            },
-            contact: {
-                email: "cipriano@toledo.com",
-                phoneOne: "657874321",
-                phoneTwo: "653312344"
-            },
-            comment: "Un tio de pueblo"
-        }, (error, client) => {
-            if (error) return next(error)
-            console.log(client);
-        })
-    */
 
     Profile.findById('59abc4c29f6c941060343599', (error, profile) => {
         if (error) return next(error);

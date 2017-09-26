@@ -10,7 +10,7 @@ block content
     div.dropdown-divider
     .container
         .row
-            .col-12  
+            .col-12.col-lg-10.offset-lg-1
                 table.table.table-responsive.table-bordered.table-striped
                     thead 
                         tr
@@ -18,7 +18,7 @@ block content
                             th Nombre Completo
                             th Teléfonos contacto
                             th Email de contacto
-                            th Fecha de creación
+                            th Mascotas
                     tbody
                     each client, index in clients
                         tr
@@ -28,9 +28,13 @@ block content
                                 button.btn(type='button').alone-buttons
                                     i.fa.fa-pencil.fa-fw.text-warning
                             td= client.personal.name
-                            td= client.contact.phoneOne + "/" + client.contact.phoneTwo        
+                            td#phones= client.contact.phoneOne + "/" + client.contact.phoneTwo        
                             td= client.contact.email
-                            td= client.createdAt.toLocaleString()
+                        each pet in client.pets
+                            td= pet.personal.name
+                                mark= pet.personal.breed
+
+
 
     each client, index in clients        
         include ../partials/modal_client.pug 
@@ -43,4 +47,5 @@ block scripts
             $('.card-footer').find('form').on('submit', function(event) {
                 return confirm('¿Estás seguro de querer borrarlo?')  
             });
+                let $phonesRow = $('div.container').find('td#phones')
         })
