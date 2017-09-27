@@ -1,0 +1,90 @@
+div(id="newPet" + client._id, tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true').modal.fade
+    .modal-dialog(role='document')
+        .modal-content
+            .modal-header
+                h5.modal-title.text-danger Añadir nueva mascota 
+                span.mx-2.text-success
+                    i.fa.fa-2x.fa-fw.fa-paw
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+            .modal-body
+                .container-fluid
+                    .row
+                        .col-12
+                            form(action="/admin/new/pet" method="POST")
+                                .card
+                                    .card-header
+                                        h2.text-center.text-success Datos generales
+                                        input(type="hidden" name="client_id" value=client._id)
+                                        .form-group
+                                            input.form-control(type="text" name="petName" placeholder="Nombre de la mascota")
+                                        .form-group
+                                            input.form-control(type="text" name="petBreed" placeholder="Raza")
+                                        .form-group
+                                            input.form-control(type="text" name="petCoat" placeholder="Capa")
+                                        .form-group.text-center
+                                            legend Carácter
+                                                .form-check
+                                                    label.form-check-label
+                                                        input.form-check-input.mr-3(type="radio" name="attitude" value="Bueno" checked)
+                                                        | Bueno
+                                                .form-check
+                                                    label.form-check-label
+                                                        input.form-check-input.mr-3(type="radio" name="attitude" value="Nervioso")
+                                                        | Nervioso
+                                                .form-check  
+                                                    label.form-check-label
+                                                        input.form-check-input.mr-3(type="radio" name="attitude" value="Agresivo")
+                                                        | Agresivo
+
+                                    .card-block.client-card
+                                        .container
+                                            .row
+                                                .col-12.col-sm-8.offset-sm-2
+
+
+                                        h3.text-center.py-2.px-1 Datos clínicos
+                                        .dropdown-divider
+                                        .form-group
+                                            input(type="text" name="petMicrohip" placeholder="Número de identificación del Chip").form-control
+                                        .form-check
+                                            label.form-check-label
+                                                input.form-check-input.mr-3(type="checkbox" value="" name="castrated")
+                                                | ¿Castrado?
+                                        fieldset
+                                            legend.text-warning.font-weight-bold Sexo
+                                                .form-check.form-check-inline
+                                                    label.form-check-label
+                                                        input.form-check-input.ml-1.mr-2(type="radio" name="petGender" value="Macho" checked)
+                                                        | Macho
+
+                                                    label.form-check-label
+                                                        input.form-check-input.ml-1.mr-2(type="radio" name="petGender" value="Hembra")
+                                                        | Hembra
+                                        .form-group
+                                            label(for="petAge") Edad
+                                                input(type="number" id="petAge" name="petAge" min="0", max="20").form-control
+                                        .form-check
+                                            .alert.alert-danger
+                                                label.form-check-label.display-4
+                                                    input.bite.form-check-input.mr-3(type="checkbox" value="yes" name="bite")
+                                                    | ¿ Muerde ?
+                                        .dropdown-divider
+                                        .form-group
+                                            .d-flex.justify-content-around.vaccine
+                                                h4 Vacunas
+                                                button(type="button" tile="Nueva vacuna").btn.alone-buttons
+                                                    i.fa.fa.fa-fw.fa-plus-square.text-success
+                                            .list-group
+                                                li.list-group-item
+                                                    input.form-control(type="text" name="" placeholder="Vacuna prueba") 
+
+
+                                    .dropdown-divider
+
+                                    .card-footer.d-flex.justify-content-center.align-items-center
+                                        button(type="submit").btn.alone-buttons
+                                            i.fa.fa-2x.fa-fw.fa-plus-square.text-success
+            .modal-footer
+                button.btn.btn-secondary(type='button', data-dismiss='modal') Cerrar
+

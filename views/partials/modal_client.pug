@@ -76,13 +76,9 @@ div(id="client" + index, tabindex='-1', role='dialog', aria-labelledby='exampleM
 
                                     .d-flex.justify-content-around.align-items-center
                                         h2.text-center.py-2.px-1 Mascotas
-                                        form(action="/admin/pet/new" method="POST")
-                                            button(type="submit" data-toggle="tooltip" data-placement="left" title="Añadir nueva mascota").alone-buttons
-                                                i.fa.fa-2x.fa-fw.fa-plus-circle.text-success
 
                                     div.list.group.list-group-flush
-                                        button(type="button").list-group-item.list-group-item-action 
-                                            i.fa.fa-2x.fa-pencil-square-o.fa-fw.ml-5.text-warning
+
 
                                 .card-footer.d-flex.justify-content-center.align-items-center
                                     form(action="/admin/clients/remove/" + index, method="POST")

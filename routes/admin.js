@@ -3,10 +3,12 @@ const router = require('express').Router(),
     ContactData = require('../models/ContactData'),
     Services = require('../models/Services'),
     Client = require('../models/Client'),
-    Contact = require('../models/Contact');
+    Contact = require('../models/Contact'),
+    Pet = require('../models/Pet');
 
 let servicesData = [],
-    clientsData = [];
+    clientsData = [],
+    petsData = [];
 
 router.get('/admin', (request, response, next) => {
     let newMessages = 0;

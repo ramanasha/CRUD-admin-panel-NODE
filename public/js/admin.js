@@ -1,1 +1,1 @@
-"use strict";$(function(){$('[data-toggle="tooltip"]').tooltip()});
+"use strict";
