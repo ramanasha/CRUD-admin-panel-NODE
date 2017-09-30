@@ -33,7 +33,8 @@ block content
                             td= client.personal.name
                             td#phones= client.contact.phoneOne + "/" + client.contact.phoneTwo        
                             td= client.contact.email
-
+                            td= client.pets
+                          
 
 
     each client, index in clients        
@@ -48,12 +49,6 @@ block scripts
             $('.card-footer').find('form').on('submit', function(event) {
                 return confirm('¿Estás seguro de querer borrarlo?')  
             });
-            /*
-                let $phonesRow = $('div.container').find('td#phones')
-                `each pet in client.pets
-                    td= pet.personal.name
-                        mark= pet.personal.breed`^
-                        */
             $('div.vaccine').find('button').on('click', function() { 
                 let liPosition = $(this).parent().next('.list-group').children().length;
                 let $list_item = $('<li>', {class:"list-group-item"}),

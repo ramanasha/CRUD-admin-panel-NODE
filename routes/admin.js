@@ -156,25 +156,55 @@ router.post('/admin/clients/remove/:index', (request, response, next) => {
 })
 
 
-router.post('/admin/new/pet', (request, response) => {
+router.post('/admin/new/pet', (request, response, next) => {
+    let vaccines = [],
+        diseases = [],
+        vaccinesParsed = JSON.parse(request.body.vaccines),
+        diseasesParsed = JSON.parse(request.body.diseases);
 
-    response.send(request.body.diseases)
-    /*Pet.create({
+    if (vaccinesParsed.length !== 0) {
+        vaccines = vaccinesParsed.map(vaccine => {
+            return vaccine.value
+        })
+    }
+    if (diseasesParsed.length !== 0) {
+        diseases = diseasesParsed.map(disease => {
+            return disease.value
+        })
+    }
+
+    Pet.create({
         personal: {
-            name: request.body.name,
-            age: request.body.age,
-            breed: request.body.breed,
-            castrated: request.body.castrated ? true : false
+            name: request.body.petName,
+            age: request.body.petAge,
+            gender: request.body.petGender,
+            breed: request.body.petBreed,
+            castrated: request.body.castrated ? true : false,
+            nature: request.body.attitude
         },
         clinicalData: {
             bite: request.body.bite ? true : false,
-
+            microchip: request.body.petMicrochip,
+            vaccines: vaccines,
+            diseases: diseases
         },
         comment: request.body.comment,
         owner: request.body.client_id
+    }, (error, pet) => {
+        if (error) return next(error);
+        console.log(`NEW PET ADDED: ${JSON.stringify(pet, undefined, 2)}`)
+        Client.findByIdAndUpdate(pet.owner, {
+            $push: {
+                pets: pet._id
+            }
+        }, { new: true }, (error, client) => {
+            if (error) return next(error);
+            console.log(`NEW CLIENT PET ADDED ON CLIENT`)
+            response.redirect('/admin/clients')
+        })
     })
-  */
 })
+
 router.get('/logout', function (request, response) {
     request.logOut();
     response.redirect('/');
