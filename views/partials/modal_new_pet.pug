@@ -11,7 +11,7 @@ div(id="newPet" + client._id, tabindex='-1', role='dialog', aria-labelledby='exa
                 .container-fluid
                     .row
                         .col-12
-                            form(action="/admin/new/pet" method="POST")
+                            form#newPet(action="/admin/new/pet" method="POST")
                                 .card
                                     .card-header
                                         h2.text-center.text-success Datos generales
@@ -72,16 +72,24 @@ div(id="newPet" + client._id, tabindex='-1', role='dialog', aria-labelledby='exa
                                         .dropdown-divider
                                         .form-group
                                             .d-flex.justify-content-around.vaccine
+                                                input#vaccines(type="hidden" name="vaccines" value=0)
                                                 h4 Vacunas
-                                                button(type="button" tile="Nueva vacuna").btn.alone-buttons
+                                                button(type="button" title="Nueva vacuna").btn.alone-buttons
                                                     i.fa.fa.fa-fw.fa-plus-square.text-success
-                                            .list-group
-                                                li.list-group-item
-                                                    input.form-control(type="text" name="" placeholder="Vacuna prueba") 
+                                            div#vaccineGroup.list-group
 
-
-                                    .dropdown-divider
-
+                                        .dropdown-divider
+                                        .form-group 
+                                            .d-flex.justify-content-around.diseases
+                                                input#diseases(type="hidden" name="diseases" value=0)
+                                                h4 Enfermedades
+                                                button(type="button" title="Nueva enfermedad").btn.alone-buttons
+                                                    i.fa.fa-fw.fa-plus-square.text-success
+                                            #diseasesGroup.list-group
+                                        .dropdown-divider
+                                        .form-group
+                                            h3.text-center.py-2.px-1 Datos relevantes
+                                            textarea#comment.form-control(name="comment", rows="4")                                  
                                     .card-footer.d-flex.justify-content-center.align-items-center
                                         button(type="submit").btn.alone-buttons
                                             i.fa.fa-2x.fa-fw.fa-plus-square.text-success

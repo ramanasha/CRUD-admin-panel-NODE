@@ -62,14 +62,14 @@ router.post('/admin/profile/edit', (request, response, next) => {
         $set: newProfileData
     }, { new: true }, (error, update) => {
         if (error) return next(error);
-        console.log(`PROFILE DATA UPDATED WITH SUCESS: ${JSON.stringify(update,undefined,2)}`);
+        console.log(`PROFILE DATA UPDATED WITH SUCESS: ${JSON.stringify(update, undefined, 2)}`);
     })
 
     ContactData.findByIdAndUpdate('59aeee169b9dcf1ac06b4e3f', {
         $set: newContactData,
     }, { new: true }, (error, update) => {
         if (error) return next(error);
-        console.log(`PROFILE DATA UPDATED WITH SUCESS: ${JSON.stringify(update,undefined,2)}`);
+        console.log(`PROFILE DATA UPDATED WITH SUCESS: ${JSON.stringify(update, undefined, 2)}`);
         response.redirect('/admin/profile')
     })
 
@@ -94,7 +94,7 @@ router.get('/admin/services', (request, response, next) => {
 router.post('/admin/services/new', (request, response, next) => {
     new Services().save((error, service) => {
         if (error) return next(error)
-        console.log(`NEW SERVICE ADDED WITH SUCCESS: ${JSON.stringify(service,undefined,2)}`);
+        console.log(`NEW SERVICE ADDED WITH SUCCESS: ${JSON.stringify(service, undefined, 2)}`);
         response.redirect('/admin/services')
     })
 })
@@ -103,7 +103,7 @@ router.post('/admin/services/delete/:index', (request, response, next) => {
     Services.findOneAndRemove({ nameService: servicesData[request.params.index].nameService },
         (error, service) => {
             if (error) return next(error);
-            console.log(`REMOVED SERVICE WITH SUCCESS: ${JSON.stringify(service,undefined,2)}`);
+            console.log(`REMOVED SERVICE WITH SUCCESS: ${JSON.stringify(service, undefined, 2)}`);
             response.redirect('/admin/services')
         })
 })
@@ -150,12 +150,32 @@ router.post('/admin/clients/remove/:index', (request, response, next) => {
     Client.findByIdAndRemove(clientsData[request.params.index]._id,
         (error, client) => {
             if (error) return next(error);
-            console.log(`REMOVED CLIENT WITH SUCCESS: ${JSON.stringify(client,undefined,2)}`);
+            console.log(`REMOVED CLIENT WITH SUCCESS: ${JSON.stringify(client, undefined, 2)}`);
             response.redirect('/admin/clients')
         })
 })
 
-router.get('/logout', function(request, response) {
+
+router.post('/admin/new/pet', (request, response) => {
+
+    response.send(request.body.diseases)
+    /*Pet.create({
+        personal: {
+            name: request.body.name,
+            age: request.body.age,
+            breed: request.body.breed,
+            castrated: request.body.castrated ? true : false
+        },
+        clinicalData: {
+            bite: request.body.bite ? true : false,
+
+        },
+        comment: request.body.comment,
+        owner: request.body.client_id
+    })
+  */
+})
+router.get('/logout', function (request, response) {
     request.logOut();
     response.redirect('/');
 });
