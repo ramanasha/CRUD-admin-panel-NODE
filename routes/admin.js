@@ -112,29 +112,6 @@ router.post('/admin/services/delete/:index', (request, response, next) => {
  * CLIENT ADMIN ZONE
  */
 router.get('/admin/clients', (request, response, next) => {
-    /*
-        new Client().create({
-            personal: {
-                name: "Antonio orozco candidato",
-                birthday: new Date('2000-04-16'),
-                address: "C/ cipriano pentecostes edificio 5",
-                DNI: "44567890x",
-                locality: "Toledo interno",
-                province: "Toledo",
-                postal_code: "43001",
-            },
-            contact: {
-                email: "cipriano@toledo.com",
-                phoneOne: "657874321",
-                phoneTwo: "653312344"
-            },
-            comment: "Un tio de pueblo"
-        }, (error, client) => {
-            if (error) return next(error)
-            console.log(client);
-        })
-    */
-
     Client.find({}, (error, clients) => {
         if (error) return next(error);
     }).then(clients => {
@@ -151,6 +128,55 @@ router.post('/admin/clients/remove/:index', (request, response, next) => {
         (error, client) => {
             if (error) return next(error);
             console.log(`REMOVED CLIENT WITH SUCCESS: ${JSON.stringify(client, undefined, 2)}`);
+            response.redirect('/admin/clients')
+        })
+})
+
+router.post('/admin/clients/edit', (request, response, next) => {
+    let newClientData = {
+        personal: {
+
+        },
+        attitude: {
+
+        },
+        contact: {
+
+        },
+    }
+
+    if (request.body.clientName) {
+        let capitalizeName = request.body.clientName.split(' ')
+            .map(word => {
+                return word.charAt(0).toUpperCase() + word.substring(1);
+            }).join(' ');
+        newClientData.personal.name = capitalizeName;
+    }
+
+    if (request.body.clientDNI) newClientData.personal.DNI = request.body.clientDNI;
+    if (request.body.clientAddress) newClientData.personal.address = request.body.clientAddress;
+    if (request.body.client_postal_code) newClientData.personal.postal_code = request.body.client_postal_code;
+    if (request.body.clientLocality) newClientData.personal.locality = request.body.clientLocality
+    if (request.body.client_birthday) newClientData.personal.birthday = request.body.client_birthday;
+    if (request.body.client_province) newClientData.personal.province = request.body.client_province;
+    if (request.body.client_gender) newClientData.personal.gender = request.body.client_gender;
+    if (request.body.client_age) newClientData.personal.age = request.body.client_age;
+
+    if (request.body.client_nature) newClientData.attitude.nature = request.body.client_nature;
+    if (request.body.client_temperament) newClientData.attitude.temperament = request.body.client_temperament;
+
+    if (request.body.client_email) newClientData.contact.email = request.body.client_email;
+    if (request.body.client_phone1) newClientData.contact.phoneOne = request.body.client_phone1;
+    if (request.body.client_phone2) newClientData.contact.phoneTwo = request.body.client_phone2;
+
+    if (request.body.client_comment) newClientData.comment = request.body.client_comment;
+
+
+    Client.findByIdAndUpdate(request.body.client_id,
+        { $set: newClientData },
+        { new: true }, (error, client) => {
+            if (error) return next(error);
+            console.log(`EDIT CLIENT WITH SUCCESS: ${JSON.stringify(client, undefined, 2)}`);
             response.redirect('/admin/clients')
         })
 })
@@ -204,6 +230,13 @@ router.post('/admin/new/pet', (request, response, next) => {
         })
     })
 })
+
+router.post('/admin/pet/info', (request, response, next) => {
+    Pet.findById(request.body.pet_id, (error, pet) => {
+        response.send(pet)
+    })
+})
+
 
 router.get('/logout', function (request, response) {
     request.logOut();

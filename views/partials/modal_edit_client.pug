@@ -1,0 +1,94 @@
+div(id="clientEdit" + index, tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true').modal.fade
+    .modal-dialog(role='document')
+        .modal-content
+            .modal-header
+                h5.modal-title.text-danger Editar cliente
+                    span.ml-2.py-1= client._id
+                span.mx-2.text-success
+                    i.fa.fa-2x.fa-fw.fa-users
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+            .modal-body
+                .container-fluid
+                    .row
+                        .col-12
+                            form#editClient(action="/admin/clients/edit" method="POST")
+                                .card
+                                    .card-header
+                                        h2.text-center.text-success Datos generales
+                                        input(type="hidden" name="client_id" value=client._id)
+                                        .form-group
+                                            input.form-control(type="text" name="clientName" placeholder="Nombre completo" value=client.personal.name)
+                                        .form-group
+                                            input.form-control(type="text" name="clientDNI" placeholder="DNI" value=client.personal.DNI)
+                                        .form-group
+                                            input.form-control(type="text" name="clientAddress" placeholder="Direccion" value=client.personal.address)
+                                        .form-group
+                                            input.form-control(type="text" name="clientLocality" placeholder="Localidad" value=client.personal.locality)
+                                        .form-group
+                                            include ../partials/provincias.pug
+                                        .form-group
+                                            input(type="text" placeholder="Codigo postal" name="client_postal_code" value=client.personal.postal_code).form-control
+                                        .form-group
+                                            input(type="date" name="client_birthday" value="1991-06-13").form-control
+                                        .form-group.text-center
+                                            legend Carácter
+                                            .form-check
+                                                label.form-check-label
+                                                    input.form-check-input.mr-3(type="radio" name="client_nature" value="Colaborativo" checked)
+                                                    | Colaborativo
+                                            .form-check
+                                                label.form-check-label
+                                                    input.form-check-input.mr-3(type="radio" name="client_nature" value="No Colaborativo")
+                                                    | No colaborativo
+                                        .dropdown-divider
+                                        .form-group.text-center
+                                            legend Temperamento
+                                            .form-check
+                                                label.form-check-label
+                                                    input.form-check-input.mr-3(type="radio" name="client_temperament" value="Fuerte" checked)
+                                                    | Fuerte
+                                            .form-check
+                                                label.form-check-label
+                                                    input.form-check-input.mr-3(type="radio" name="client_temperament" value="Medio")
+                                                    | Medio
+                                            .form-check
+                                                label.form-check-label
+                                                    input.form-check-input.mr-3(type="radio" name="client_temperament" value="Débil")
+                                                    | Débil
+                                            .dropdown-divider
+                                            fieldset
+                                                legend.text-warning.font-weight-bold Sexo
+                                                    .form-check.form-check-inline
+                                                        label.form-check-label
+                                                            input.form-check-input.ml-1.mr-2(type="radio" name="client_gender" value="Hombre" checked)
+                                                            | Hombre
+
+                                                        label.form-check-label
+                                                            input.form-check-input.ml-1.mr-2(type="radio" name="client_gender" value="Mujer")
+                                                            | Mujer
+                                        .form-group.text-center
+                                            label(for="clientAge") Edad
+                                                input(type="number" id="clientAge" name="client_age" min="1", max="100" value=client.personal.age).form-control     
+                                    .card-block.client-card
+                                        .container
+                                            .row
+                                                .col-12.col-sm-8.offset-sm-2
+                                        h3.text-center.py-2.px-1 Datos de contacto
+                                        .dropdown-divider
+                                        .form-group
+                                            input(type="text" name="client_email" placeholder="Email cliente" value=client.contact.email).form-control
+                                        .form-group
+                                            input(type="text" name="client_phone1" placeholder="Teléfono cliente principal" value=client.contact.phoneOne).form-control
+                                        .form-group
+                                            input(type="text" name="client_phone2" placeholder="Teléfono cliente secundario" value=client.contact.phoneTwo).form-control
+                                        .dropdown-divider                                           
+                                        .form-group
+                                            h3.text-center.py-2.px-1 Datos relevantes
+                                            textarea#comment.form-control(name="client_comment", rows="4")= client.comment                                  
+                                    .card-footer.d-flex.justify-content-center.align-items-center
+                                        button(type="submit").btn.alone-buttons
+                                            i.fa.fa-2x.fa-fw.fa-check-square-o.text-success
+            .modal-footer
+                button.btn.btn-secondary(type='button', data-dismiss='modal') Cerrar
+
