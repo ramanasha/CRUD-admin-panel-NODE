@@ -86,12 +86,35 @@ gulp.task('optimize-models', (errorHandler) => {
         gulp.dest(path.resolve(__dirname, 'models/'))
     ], errorHandler)
 })
-
+/*
+gulp.task('optimize-routes', (errorHandler) => {
+    pump([
+        gulp.src(path.join(__dirname, 'lib/routes/*.js')),
+        babel({
+            "presets": [
+                [
+                    "env",
+                    {
+                        "targets": {
+                            "browsers": ["last 2 versions", "ie >= 7"],
+                            "node": "current"
+                        }
+                    }
+                ]
+            ]
+        }),
+        uglify(),
+        gulp.dest(path.resolve(__dirname, 'routes/'))
+    ], errorHandler)
+})
+*/
 gulp.task('watch', () => {
 
     gulp.watch(path.join(__dirname, 'lib/assets/sass/*.scss'), ['sass']);
     gulp.watch(path.join(__dirname, 'lib/js/*.js'), ['scripts']);
     gulp.watch(path.join(__dirname, 'lib/models/*.js'), ['optimize-models']);
+    //gulp.watch(path.join(__dirname, 'lib/routes/*.js'), ['optimize-routes']);
+
 
 })
 
