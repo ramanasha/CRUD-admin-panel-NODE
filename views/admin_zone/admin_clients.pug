@@ -4,13 +4,17 @@ block content
         .admin-icons.text-center.py-2
             a(href="/admin").mr-2.active.text-warning Volver al panel de administración
                 i.fa.fa-2x.fa-fw.fa-cogs
-            a(href="/admin/").ml-1
+            a(href="/admin/messages").ml-1
                 i.fa.fa-2x.fa-fw.fa-envelope
                 span.badge.badge-danger.py-1 0
     div.dropdown-divider
     .container
         .row
             .col-12.col-lg-10.offset-lg-1
+                h3.my-2.mr-2.d-inline Nuevo cliente
+                span
+                    button(type="button", title="Añadir nuevo cliente" data-toggle='modal', data-target='#newClient').text-success.alone-buttons
+                        i.fa.fa-2x.fa-fw.fa-user
                 table.table.table-responsive.table-bordered.table-striped
                     thead 
                         tr
@@ -43,7 +47,7 @@ block content
         include ../partials/modal_client.pug
         include ../partials/modal_edit_client.pug 
         include ../partials/modal_new_pet.pug
-
+    include ../partials/modal_new_client.pug
 block scripts
     script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js', integrity='sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn', crossorigin='anonymous')
@@ -57,8 +61,10 @@ block scripts
 
                     $parentTd.children('span.d-none').each(function() {
                         $.post('/admin/pet/info', {pet_id: $(this).text() }).done(function(pet) {
+                            let $linkPet = $('<a>', {href:`/admin/pet/control/${pet._id}`, target: "_blank"})
                             let $petName = $('<mark>', {class: "mt-1 d-block font-weight-bold", text: pet.personal.name})
-                            $parentTd.append($petName)
+                            $linkPet.append($petName)
+                            $parentTd.append($linkPet)
                             $parentTd.children('div.loader').remove()     
                         })
                     })
@@ -83,11 +89,11 @@ block scripts
                         $(this).parent().find('#vaccines').attr("value", liPosition + 1 )  
                 })
 
-                    $('form#newPet').on('submit', function(event) {
-                        let vaccinesGroup = JSON.stringify($(`#vaccineGroup input`).serializeArray());
-                        $('#vaccines').attr("value", vaccinesGroup)
-                        let diseasesGroup = JSON.stringify($(`#diseasesGroup input`).serializeArray());
-                        $('#diseases').attr("value", diseasesGroup)
+                    $('form.newPet').on('submit', function(event) {
+                        let vaccinesGroup = JSON.stringify($(`.vaccineGroup input`).serializeArray());
+                        $('.vaccines').attr("value", vaccinesGroup)
+                        let diseasesGroup = JSON.stringify($(`.diseasesGroup input`).serializeArray());
+                        $('.diseases').attr("value", diseasesGroup)
                     })
 
                 $('div.diseases').find('button').on('click', function() {
@@ -102,7 +108,7 @@ block scripts
                         $list_item.append($input_item)
                         let $list_group = $(this).parent().next('.list-group')
                         $list_item.appendTo($list_group)
-                        $(this).parent().find('#diseases').attr("value", liPosition + 1 )
+                        $(this).parent().find('.diseases').attr("value", liPosition + 1 )
 
                 })
         })

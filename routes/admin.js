@@ -122,6 +122,35 @@ router.get('/admin/clients', (request, response, next) => {
     })
 })
 
+router.post('/admin/clients/new', (request, response, next) => {
+    Client.create({
+        personal: {
+            name: request.body.clientName,
+            birthday: new Date(request.body.client_birthday),
+            age: request.body.client_age,
+            gender: request.body.client_gender,
+            address: request.body.clientAddress,
+            DNI: request.body.clientDNI,
+            locality: request.body.clientLocality,
+            province: request.body.client_province,
+            postal_code: request.body.client_postal_code
+        },
+        attitude: {
+            nature: request.body.client_nature,
+            temperament: request.body.client_temperament,
+        },
+        contact: {
+            email: request.body.client_email,
+            phoneOne: request.body.client_phone1,
+            phoneTwo: request.body.client_phone2
+        },
+        comment: request.body.client_comment
+    }, (error, client) => {
+        if (error) return next(error);
+        console.log(`ADDED CLIENT WITH SUCCESS: ${JSON.stringify(client, undefined, 2)}`);
+        response.redirect('/admin/clients')
+    })
+})
 
 router.post('/admin/clients/remove/:index', (request, response, next) => {
     Client.findByIdAndRemove(clientsData[request.params.index]._id,
@@ -205,6 +234,7 @@ router.post('/admin/new/pet', (request, response, next) => {
             age: request.body.petAge,
             gender: request.body.petGender,
             breed: request.body.petBreed,
+            kind: request.body.petKind,
             castrated: request.body.castrated ? true : false,
             nature: request.body.attitude
         },
@@ -234,6 +264,14 @@ router.post('/admin/new/pet', (request, response, next) => {
 router.post('/admin/pet/info', (request, response, next) => {
     Pet.findById(request.body.pet_id, (error, pet) => {
         response.send(pet)
+    })
+})
+
+router.get('/admin/pet/control/:id', (request, response, next) => {
+    Pet.findById(request.params.id, (error, pet) => {
+        response.render('admin_zone/admin_pet_control.pug', {
+            petData: pet
+        })
     })
 })
 

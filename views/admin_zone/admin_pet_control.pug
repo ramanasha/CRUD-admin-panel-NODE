@@ -1,0 +1,84 @@
+extends admin_layout.pug
+block content
+    .container
+        .admin-icons.text-center.py-2
+            a(href="/admin/clients").mr-2.active.text-warning Volver a panel de clientes
+                i.fa.fa-2x.fa-fw.fa-cogs
+    div.dropdown-divider
+
+    .container
+        .row
+            .col-10.offset-1.col-sm-8.offset-sm-2.col-lg-6.offset-lg-3
+                ul.nav.nav-tabs(role='tablist')
+                    li.nav-item
+                        a.nav-link.active(data-toggle='tab', href='#petInfo', role='tab')
+                            i.fa.fa-2x.fa-fw.fa-info-circle
+                    li.nav-item
+                        a.nav-link(data-toggle='tab', href='#petClinical', role='tab') 
+                            i.fa.fa-2x.fa-fw.fa-user-md
+                    li.nav-item
+                        a.nav-link(data-toggle='tab', href='#gallery', role='tab') 
+                            i.fa.fa-2x.fa-fw.fa-picture-o
+
+                .tab-content     
+                    #petInfo.tab-pane.active(role='tabpanel') 
+                        .card
+                            .card-header
+                                h4.card-title.text-warning.text-center.mb-2.py-1.px-2 Información general
+                                .dropdown-divider
+                                div.d-flex.flex-column
+                                    span.alert.alert-warning
+                                        strong.mr-4 NOMBRE: 
+                                        h6.card-subtitle.my-2.text-muted.d-inline= petData.personal.name
+                                    span.alert.alert-warning 
+                                        strong.mr-4 EDAD:
+                                        h6.card-subtitle.my-2.text-muted.d-inline= petData.personal.age
+                                    span.alert.alert-warning 
+                                        strong.mr-4 SEXO:
+                                        h6.card-subtitle.my-2.text-muted.d-inline= petData.personal.gender
+                                    span.alert.alert-warning 
+                                        strong.mr-4 RAZA:
+                                        h6.card-subtitle.my-2.text-muted.d-inline= petData.personal.breed
+                                    span.alert.alert-warning 
+                                        strong.mr-4 ESPECIE:
+                                        h6.card-subtitle.my-2.text-muted.d-inline= petData.personal.kind
+                                    span.alert.alert-warning 
+                                        strong.mr-4 CAPA:
+                                        h6.card-subtitle.my-2.text-muted.d-inline= petData.personal.coat
+                            .card-block
+                                .py-2.px-1
+                                    span.mr-4.font-weight-bold Carácter: 
+                                        mark.font-weight-normal.font-italic= petData.personal.nature
+                                .dropdown-divider
+
+
+                    #petClinical.tab-pane(role='tabpanel') 
+                        .card
+                            .card-header
+                                h4.card-title.text-warning.text-center.mb-2.py-1.px-2 Datos clínicos
+                                .dropdown-divider
+                                div.d-flex.flex-column
+                                    span.alert.alert-warning 
+                                        strong.mr-4 ID MICROCHIP:
+                                        h6.card-subtitle.my-2.text-muted.d-inline= petData.clinicalData.microchip
+                                    span.alert.alert-danger
+                                        strong.mr-3 ¿MUERDE?
+                                        h6.card-subtitle.my-2.text-muted.d-inline= petData.clinicalData.bite ? "SI": "NO"
+                                    .py-2.px-1
+                                        span.mr-2.font-weight-bold Castrado:
+                                        mark.font-weight-normal.font-italic= petData.personal.castrated ? "SI" : "NO"
+                                    h5.card-subtitle.my-2.text-muted.d-inline VACUNAS
+                                    div.list-group
+                                        each vaccine in petData.clinicalData.vaccines
+                                            li.list-group-item= vaccine
+                                    h5.card-subtitle.my-2.text-muted.d-inline ENFERMEDADES
+                                    div.list-group
+                                        each disease in petData.clinicalData.diseases
+                                            li.list-group-item= disease
+                                    .dropdown-divider
+                                .card-block
+                                    h4.card-title.text-warning.text-center.mb-3.py-1.px-2 Datos relevantes
+                                    .jumbotron
+                                        p.card-text.text-justify= petData.comment
+
+                    #gallery.tab-pane(role='tabpanel') Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus accusantium porro, commodi fugiat fugit dolorum tenetur cum inventore id facilis velit nisi! Adipisci quod hic aperiam! Modi recusandae at vel!

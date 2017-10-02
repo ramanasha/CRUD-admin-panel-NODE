@@ -11,7 +11,7 @@ div(id="newPet" + client._id, tabindex='-1', role='dialog', aria-labelledby='exa
                 .container-fluid
                     .row
                         .col-12
-                            form#newPet(action="/admin/new/pet" method="POST")
+                            form(action="/admin/new/pet" method="POST").newPet
                                 .card
                                     .card-header
                                         h2.text-center.text-success Datos generales
@@ -20,6 +20,8 @@ div(id="newPet" + client._id, tabindex='-1', role='dialog', aria-labelledby='exa
                                             input.form-control(type="text" name="petName" placeholder="Nombre de la mascota")
                                         .form-group
                                             input.form-control(type="text" name="petBreed" placeholder="Raza")
+                                        .form-group
+                                            input.form-control(type="text" name="petKind" placeholder="Especie")
                                         .form-group
                                             input.form-control(type="text" name="petCoat" placeholder="Capa")
                                         .form-group.text-center
@@ -72,20 +74,20 @@ div(id="newPet" + client._id, tabindex='-1', role='dialog', aria-labelledby='exa
                                         .dropdown-divider
                                         .form-group
                                             .d-flex.justify-content-around.vaccine
-                                                input#vaccines(type="hidden" name="vaccines" value=0)
+                                                input.vaccines(type="hidden" name="vaccines" value=0)
                                                 h4 Vacunas
                                                 button(type="button" title="Nueva vacuna").btn.alone-buttons
                                                     i.fa.fa.fa-fw.fa-plus-square.text-success
-                                            div#vaccineGroup.list-group
+                                            div.vaccineGroup.list-group
 
                                         .dropdown-divider
                                         .form-group 
                                             .d-flex.justify-content-around.diseases
-                                                input#diseases(type="hidden" name="diseases" value=0)
+                                                input.diseases(type="hidden" name="diseases" value=0)
                                                 h4 Enfermedades
                                                 button(type="button" title="Nueva enfermedad").btn.alone-buttons
                                                     i.fa.fa-fw.fa-plus-square.text-success
-                                            #diseasesGroup.list-group
+                                            .diseasesGroup.list-group
                                         .dropdown-divider
                                         .form-group
                                             h3.text-center.py-2.px-1 Datos relevantes
