@@ -269,11 +269,68 @@ router.post('/admin/pet/info', (request, response, next) => {
 })
 
 router.get('/admin/pet/control/:id', (request, response, next) => {
+    let petData;
     Pet.findById(request.params.id, (error, pet) => {
-        response.render('admin_zone/admin_pet_control.pug', {
-            petData: pet
+        if (error) return next(error);
+        petData = pet;
+        Client.findById(pet.owner, (error, client) => {
+            if (error) return next(error)
+            response.render('admin_zone/admin_pet_control.pug', {
+                petData: pet,
+                clientId: client.personal.name
+            })
         })
     })
+
+})
+
+router.post('/admin/pet/edit', (request, response, next) => {
+
+    let vaccines = [],
+        diseases = [],
+        vaccinesParsed = JSON.parse(request.body.vaccines),
+        diseasesParsed = JSON.parse(request.body.diseases);
+
+    let newPetData = {
+        personal: {
+
+        }, clinicalData: {
+
+        }
+    };
+
+    if (vaccinesParsed.length !== 0) {
+        vaccines = vaccinesParsed.map(vaccine => {
+            return vaccine.value
+        })
+        newPetData.clinicalData.vaccines = vaccines;
+
+    }
+    if (diseasesParsed.length !== 0) {
+        diseases = diseasesParsed.map(disease => {
+            return disease.value
+        })
+        newPetData.clinicalData.diseases = diseases;
+    }
+    if (request.body.petName) newPetData.personal.name = request.body.petName;
+    if (request.body.petBreed) newPetData.personal.breed = request.body.petBreed;
+    if (request.body.petKind) newPetData.personal.kind = request.body.petKind;
+    if (request.body.petCoat) newPetData.personal.coat = request.body.petCoat;
+    if (request.body.petNature) newPetData.personal.nature = request.body.petNature;
+    if (request.body.petAge) newPetData.personal.age = request.body.petAge;
+    if (request.body.castrated) newPetData.personal.castrated = request.body.castrated
+    if (request.body.petGender) newPetData.personal.gender = request.body.petGender;
+    if (request.body.bite) newPetData.clinicalData.bite = request.body.bite;
+    if (request.body.petMicrochip) newPetData.clinicalData.microchip = request.body.petMicrochip;
+    if (request.body.comment) newPetData.comment = request.body.comment;
+
+    Pet.findByIdAndUpdate(request.body.petID,
+        { $set: newPetData }, { new: true }, (error, pet) => {
+            if (error) return next(error)
+            console.log(`PET UPDATED WITH SUCCESS: ${JSON.stringify(pet, undefined, 2)}`)
+            response.redirect(`/admin/pet/control/${pet._id}`)
+        })
+
 })
 
 

@@ -5,10 +5,12 @@ block content
             a(href="/admin/clients").mr-2.active.text-warning Volver a panel de clientes
                 i.fa.fa-2x.fa-fw.fa-cogs
     div.dropdown-divider
-
+    div.my-4.text-center.clientId
+        h3.d-inline Mascota del cliente: 
+        span.ml-2.font-italic.text-warning= clientId
     .container
         .row
-            .col-10.offset-1.col-sm-8.offset-sm-2.col-lg-6.offset-lg-3
+            .col-10.offset-1.col-lg-6.offset-lg-3
                 ul.nav.nav-tabs(role='tablist')
                     li.nav-item
                         a.nav-link.active(data-toggle='tab', href='#petInfo', role='tab')
@@ -19,7 +21,9 @@ block content
                     li.nav-item
                         a.nav-link(data-toggle='tab', href='#gallery', role='tab') 
                             i.fa.fa-2x.fa-fw.fa-picture-o
-
+                    li.nav-item 
+                        a.nav-link(data-toggle='tab', href='#petEdit', role='tab') 
+                            i.fa.fa-2x.fa-fw.fa-pencil
                 .tab-content     
                     #petInfo.tab-pane.active(role='tabpanel') 
                         .card
@@ -76,9 +80,103 @@ block content
                                         each disease in petData.clinicalData.diseases
                                             li.list-group-item= disease
                                     .dropdown-divider
-                                .card-block
-                                    h4.card-title.text-warning.text-center.mb-3.py-1.px-2 Datos relevantes
+                                .card-block.petComment
+                                    h4.card-title.text-warning.text-center.mb-1.py-1.px-2 Datos relevantes
                                     .jumbotron
-                                        p.card-text.text-justify= petData.comment
-
+                                        p.card-text.text-justify= petData.comment  
                     #gallery.tab-pane(role='tabpanel') Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus accusantium porro, commodi fugiat fugit dolorum tenetur cum inventore id facilis velit nisi! Adipisci quod hic aperiam! Modi recusandae at vel!
+                    #petEdit.tab-pane(role='tabpanel')
+                        .container-fluid
+                            .row
+                                .col-12
+                                    form.newPet(action="/admin/pet/edit" method="POST")
+                                        .card
+                                            .card-header
+                                                h2.text-center.text-success Datos generales
+                                                input(type="hidden" name="petID" value=petData._id)
+                                                .form-group
+                                                    input.form-control(type="text" name="petName" placeholder="Nombre de la mascota" value=petData.personal.name)
+                                                .form-group
+                                                    input.form-control(type="text" name="petBreed" placeholder="Raza" value=petData.personal.breed)
+                                                .form-group
+                                                    input.form-control(type="text" name="petKind" placeholder="Especie" value=petData.personal.kind)
+                                                .form-group
+                                                    input.form-control(type="text" name="petCoat" placeholder="Capa" value=petData.personal.coat)
+                                                .form-group.text-center
+                                                    legend Carácter
+                                                        .form-check
+                                                            label.form-check-label
+                                                                input.form-check-input.mr-3(type="radio" name="petNature" value="Bueno" checked)
+                                                                | Bueno
+                                                        .form-check
+                                                            label.form-check-label
+                                                                input.form-check-input.mr-3(type="radio" name="petNature" value="Nervioso")
+                                                                | Nervioso
+                                                        .form-check  
+                                                            label.form-check-label
+                                                                input.form-check-input.mr-3(type="radio" name="petNature" value="Agresivo")
+                                                                | Agresivo
+
+                                            .card-block.client-card
+
+                                                h3.text-center.py-2.px-1 Datos clínicos
+                                                .dropdown-divider
+                                                .form-group
+                                                    input(type="text" name="petMicrochip" placeholder="Número de identificación del Chip" value=petData.clinicalData.microchip).form-control
+                                                .form-check
+                                                    label.form-check-label
+                                                        input.form-check-input.mr-3(type="checkbox" value="" name="castrated")
+                                                        | ¿Castrado?
+                                                        fieldset
+                                                            legend.text-warning.font-weight-bold Sexo
+                                                .form-check.form-check-inline
+                                                    label.form-check-label
+                                                        input.form-check-input.ml-1.mr-2(type="radio" name="petGender" value="Macho" checked)
+                                                        | Macho
+
+                                                    label.form-check-label
+                                                        input.form-check-input.ml-1.mr-2(type="radio" name="petGender" value="Hembra")
+                                                        | Hembra
+                                                .form-group
+                                                    label(for="petAge") Edad
+                                                        input(type="number" id="petAge" name="petAge" min="0", max="20" value=petData.personal.age).form-control
+                                                .form-check
+                                                    .alert.alert-danger
+                                                        label.form-check-label.display-4
+                                                            input.bite.form-check-input.mr-3(type="checkbox" value="yes" name="bite")
+                                                            | ¿ Muerde ?
+                                                .dropdown-divider
+                                                .form-group
+                                                    .d-flex.justify-content-around.vaccine
+                                                        input.vaccines(type="hidden" name="vaccines" value=0)
+                                                        h4 Vacunas
+                                                        button(type="button" title="Nueva vacuna").btn.alone-buttons
+                                                            i.fa.fa.fa-fw.fa-plus-square.text-success
+                                                    div.vaccineGroup.list-group
+                                                        each vaccine in petData.clinicalData.vaccines
+                                                            li.list-group-item
+                                                                input(type="text" placeholder="Vacuna" value=vaccine name="vaccine").form-control
+
+                                                .dropdown-divider
+                                                .form-group 
+                                                    .d-flex.justify-content-around.diseases
+                                                        input.diseases(type="hidden" name="diseases" value=0)
+                                                        h4 Enfermedades
+                                                        button(type="button" title="Nueva enfermedad").btn.alone-buttons
+                                                            i.fa.fa-fw.fa-plus-square.text-success
+                                                    .diseasesGroup.list-group
+                                                        each disease in petData.clinicalData.diseases
+                                                            li.list-group-item
+                                                                input(type="text" placeholder="Enfermedad" value=disease name="disease").form-control
+                                                .dropdown-divider
+                                                .form-group
+                                                    h3.text-center.py-2.px-1 Datos relevantes
+                                                    textarea#comment.form-control(name="comment", rows="4")= petData.comment                                
+                                            .card-footer.d-flex.justify-content-center.align-items-center
+                                                button(type="submit").btn.alone-buttons
+                                                    i.fa.fa-2x.fa-fw.fa-check-square-o.text-success
+block scripts 
+    script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js', integrity='sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn', crossorigin='anonymous')
+    script(src='../../../js/pet_control.js')
+

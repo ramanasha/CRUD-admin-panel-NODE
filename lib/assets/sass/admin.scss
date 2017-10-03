@@ -108,6 +108,19 @@ mark.d-block {
     cursor:pointer;
 }
 
+.jumbotron {
+    padding: .8em;
+}
+
+.petComment {
+    padding: .5em;
+}
+
+.clientId {
+    span {
+        font-size:20px;
+    }
+}
 .loader {
     border-radius: 50%;
     width: 2em;
