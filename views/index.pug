@@ -29,6 +29,25 @@ block content
                         i.fa.fa-2x.fa-fw.fa-mobile(aria-hidden='true')
                         i.fa.fa-2x.fa-fw.fa-whatsapp(aria-hidden='true') 
                         a.mx-3.phone-number.text-warning(href='tel:+34' + contact.phone.replace(/-/g, ''))= contact.phone
+                        .dropdown-divider
+                        div.schedule.text-center
+                            h3 Horario de atención
+                                i.fa.fa-fw.fa-clock-o
+                            span.mr-1
+                                i.fa.fa-fw.fa-sun-o
+                            span  9:30 - 14:30
+                            p.mb-1
+                            span.mr-1
+                                i.fa.fa-fw.fa-moon-o
+                            span  16:30 - 21:00
+                            .dropdown-divider
+                            p.day.mt-1.mb-0 Lunes ~ Viernes 
+                                i.fa.fa-fw.fa-sun-o.px-2.py-1
+                            p.day.mt-1.mb-0 Fines de Semana
+                                i.fa.fa-fw.fa-sun-o.px-2.py-1
+                                i.fa.fa-fw.fa-moon-o.px-2.py-1
+
+
 
                     // Modal
                     #email-form.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
