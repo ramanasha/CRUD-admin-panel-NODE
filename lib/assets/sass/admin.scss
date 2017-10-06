@@ -189,6 +189,28 @@ mark.d-block {
     }
   }
 
+.search-bar {
+    input[type="search"] {
+        max-width:200px;
+        width:100px;
+        -webkit-transition: width 0.4s ease-in-out;
+        -moz-transition: width 0.4s ease-in-out;
+        -ms-transition: width 0.4s ease-in-out;
+        -o-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+        float: left;
+        border: 3px solid #ffa84c;
+        padding: 5px;
+        height: 37px;
+        border-radius: 5px;
+        outline: none;
+        font-family: Cabin, Georgia ,serif;
+        &:focus {
+            width: 100%;
+        }
+    }
+  
+}
 /****************
  MESSAGES ZONE
 **************/

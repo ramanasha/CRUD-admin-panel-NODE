@@ -15,6 +15,13 @@ block content
                 span
                     button(type="button", title="Añadir nuevo cliente" data-toggle='modal', data-target='#newClient').text-success.alone-buttons
                         i.fa.fa-2x.fa-fw.fa-user
+                .d-flex.justify-content-end
+                    form(action="/admin/pet/search" method="POST").mt-2
+                        .input-group.search-bar
+                            input(type="search" placeholder="Buscar clientes" aria-describedby="search_icon")
+                            span#search_icon.input-group-btn
+                            button(type="submit").btn.btn-warning
+                                i.fa.fa-fw.fa-search
                 table.table.table-responsive.table-bordered.table-striped
                     thead 
                         tr
@@ -52,6 +59,7 @@ block scripts
     script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js', integrity='sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn', crossorigin='anonymous')
     script(src='../../js/pet_control.js')
+    script(src='../../js/search_bar.js')
     script. 
         $(function() {
             $('tbody').attr('id', 'clientData')
