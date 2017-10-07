@@ -11,14 +11,14 @@ block content
     include partials/navbar.pug
 
     section.main-profile
-        .container
+        .container-fluid
             .row
-                .col-8.offset-2.offset-sm-0.col-sm.col-lg-4
+                .col-8.offset-2.offset-sm-0.col-sm.col-lg-4.col-xl.offset-xl-1
                     figure.wrapper
                         img.img-fluid.img-thumbnail(src= profile.imageURL, alt='profile_image')
                         .middle
                             .alert.alert-warning Miriam Rico
-                .col-10.offset-1.offset-sm-0.col-sm.col-lg-6.offset-lg-1
+                .col-10.offset-1.offset-sm-0.col-sm.col-lg-6.offset-lg-1.col-xl.offset-xl-1
                     p.profile-text.text-justify.mb-4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus sit molestiae delectus ratione repellendus natus, quis similique suscipit reprehenderit corrupti dolorem aperiam culpa vitae ducimus eum labore, ipsum aliquam officiis.
                     .text-center.profile-wrapper
                         a.email(href='mailto:' + contact.email)= contact.email

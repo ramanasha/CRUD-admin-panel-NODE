@@ -112,13 +112,27 @@ router.post('/admin/services/delete/:index', (request, response, next) => {
  * CLIENT ADMIN ZONE
  */
 router.get('/admin/clients', (request, response, next) => {
+    let newMessages = 0,
+        clientsData;
     Client.find({}, (error, clients) => {
         if (error) return next(error);
     }).then(clients => {
         clientsData = clients;
-        response.render('admin_zone/admin_clients.pug', {
-            clients: clientsData
+        Contact.find({}, (error, result) => {
+            if (error) return next(error);
+        }).then(messages => {
+            messagesLength = messages.length;
+            for (let i = 0; i < messagesLength; i++) {
+                if (messages[i].unreaded) {
+                    newMessages++;
+                }
+            }
+            response.render('admin_zone/admin_clients.pug', {
+                clients: clientsData,
+                newMessages: newMessages
+            })
         })
+
     })
 })
 
@@ -264,6 +278,7 @@ router.post('/admin/new/pet', (request, response, next) => {
 
 router.post('/admin/pet/info', (request, response, next) => {
     Pet.findById(request.body.pet_id, (error, pet) => {
+        if (error) return next(error);
         response.send(pet)
     })
 })
@@ -331,6 +346,20 @@ router.post('/admin/pet/edit', (request, response, next) => {
             response.redirect(`/admin/pet/control/${pet._id}`)
         })
 
+})
+
+router.post('/admin/pet/delete', (request, response, next) => {
+    Pet.findByIdAndRemove(request.body.petID, (error, pet) => {
+        if (error) return next(error);
+        console.log(`PET DELETED WITH SUCCESS: ${JSON.stringify(pet, undefined, 2)}`)
+        Client.findByIdAndUpdate(pet.owner,
+            { $pull: { pets: pet._id } },
+            (error, client) => {
+                if (error) return next(error);
+                console.log('REMOVED PET ID FROM CLIENT')
+                response.redirect('/admin/clients')
+            })
+    })
 })
 
 

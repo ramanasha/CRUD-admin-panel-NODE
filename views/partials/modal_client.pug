@@ -74,14 +74,8 @@ div(id="client" + index, tabindex='-1', role='dialog', aria-labelledby='exampleM
 
                                     .dropdown-divider
 
-                                    .d-flex.justify-content-around.align-items-center
-                                        h2.text-center.py-2.px-1 Mascotas
-
-                                    div.list.group.list-group-flush
-
-
                                 .card-footer.d-flex.justify-content-center.align-items-center
-                                    form(action="/admin/clients/remove/" + index, method="POST")
+                                    form.delete(action="/admin/clients/remove/" + index, method="POST")
                                         button(type="submit").btn.alone-buttons
                                             i.fa.fa-2x.fa-fw.fa-trash.text-danger
             .modal-footer

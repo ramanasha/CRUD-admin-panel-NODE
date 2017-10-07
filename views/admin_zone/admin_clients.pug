@@ -6,7 +6,7 @@ block content
                 i.fa.fa-2x.fa-fw.fa-cogs
             a(href="/admin/messages").ml-1
                 i.fa.fa-2x.fa-fw.fa-envelope
-                span.badge.badge-danger.py-1 0
+                span.badge.badge-danger.py-1= newMessages
     div.dropdown-divider
     .container
         .row
@@ -60,22 +60,7 @@ block scripts
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js', integrity='sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn', crossorigin='anonymous')
     script(src='../../js/pet_control.js')
     script(src='../../js/search_bar.js')
-    script. 
-        $(function() {
-            $('tbody').attr('id', 'clientData')
-                $('tbody#clientData').find('td.petInfo').on('click', 'button.petDisplay', function() {
-                    $parentTd = $(this).parent()
-                        $parentTd.children('button.petDisplay').remove()
-                        $parentTd.append($('<div>', {class: "loader"}))
+    script(src='../../js/pet_display.js')
+    
 
-                    $parentTd.children('span.d-none').each(function() {
-                        $.post('/admin/pet/info', {pet_id: $(this).text() }).done(function(pet) {
-                            let $linkPet = $('<a>', {href:`/admin/pet/control/${pet._id}`, target: "_blank"})
-                            let $petName = $('<mark>', {class: "mt-1 d-block font-weight-bold", text: pet.personal.name})
-                            $linkPet.append($petName)
-                            $parentTd.append($linkPet)
-                            $parentTd.children('div.loader').remove()     
-                        })
-                    })
-                })
-        })
+

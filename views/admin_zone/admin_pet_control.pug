@@ -54,7 +54,11 @@ block content
                                     span.mr-4.font-weight-bold Carácter: 
                                         mark.font-weight-normal.font-italic= petData.personal.nature
                                 .dropdown-divider
-
+                            .card-footer.text-center
+                                form.delete(action="/admin/pet/delete", method="POST")
+                                    input(type="hidden" value=petData._id name="petID")
+                                    button(type="submit").btn.alone-buttons
+                                        i.fa.fa-2x.fa-fw.fa-trash.text-danger
 
                     #petClinical.tab-pane(role='tabpanel') 
                         .card
@@ -80,10 +84,12 @@ block content
                                         each disease in petData.clinicalData.diseases
                                             li.list-group-item= disease
                                     .dropdown-divider
-                                .card-block.petComment
-                                    h4.card-title.text-warning.text-center.mb-1.py-1.px-2 Datos relevantes
-                                    .jumbotron
-                                        p.card-text.text-justify= petData.comment  
+                            .card-block.petComment
+                                h4.card-title.text-warning.text-center.mb-1.py-1.px-2 Datos relevantes
+                                .jumbotron
+                                    p.card-text.text-justify= petData.comment
+                            .card-footer
+
                     #gallery.tab-pane(role='tabpanel') Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus accusantium porro, commodi fugiat fugit dolorum tenetur cum inventore id facilis velit nisi! Adipisci quod hic aperiam! Modi recusandae at vel!
                     #petEdit.tab-pane(role='tabpanel')
                         .container-fluid
@@ -173,10 +179,27 @@ block content
                                                     h3.text-center.py-2.px-1 Datos relevantes
                                                     textarea#comment.form-control(name="comment", rows="4")= petData.comment                                
                                             .card-footer.d-flex.justify-content-center.align-items-center
+
                                                 button(type="submit").btn.alone-buttons
                                                     i.fa.fa-2x.fa-fw.fa-check-square-o.text-success
+
 block scripts 
     script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js', integrity='sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn', crossorigin='anonymous')
     script(src='../../../js/pet_control.js')
+    script.
+        $(function() {
+            let objectIdRegExp = /^[a-f\d]{24}$/i,
+            path = window.location.pathname,
+            indexID = path.indexOf("l/"),
+            objectID = path.substring(indexID + 2);
+
+            $('form.delete').on('submit', function(event) {
+                if (objectIdRegExp.test(objectID)) {
+                    return confirm("¿Estas segura de querer borrar la mascota?")
+                }
+                event.preventDefault();
+            })
+
+        })
 
