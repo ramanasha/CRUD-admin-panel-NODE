@@ -136,6 +136,37 @@ router.get('/admin/clients', (request, response, next) => {
     })
 })
 
+router.post('/admin/clients/search', (request, response, next) => {
+    let reg;
+    if (/^[a-zA-Z\s]*$/.test(request.body.clientData)) {
+        reg = new RegExp(request.body.clientData, "i");
+        Client.find({ 'personal.name': { $regex: reg } }, (error, client) => {
+            if (error) return next(error);
+            response.send(client);
+        })
+    } else if (/@/g.test(request.body.clientData)) {
+        reg = new RegExp(request.body.clientData, "i");
+        Client.find({ 'contact.email': { $regex: reg } }, (error, client) => {
+            if (error) return next(error);
+            response.send(client);
+        })
+    } else if (/^#/i.test(request.body.clientData)) {
+        reg = new RegExp(request.body.clientData.substring(1), "i");
+        Client.find({ 'personal.province': { $regex: reg } }, (error, client) => {
+            if (error) return next(error);
+            response.send(client);
+        })
+    } else if (/[0-9]{5}/i.test(request.body.clientData)) {
+        reg = new RegExp(request.body.clientData, "i");
+        Client.find({ 'personal.postal_code': { $regex: reg } }, (error, client) => {
+            if (error) return next(error);
+            response.send(client);
+        })
+    } else {
+        response.send("No se ha encontrado ningún resultado")
+    }
+})
+
 router.post('/admin/clients/new', (request, response, next) => {
     Client.create({
         personal: {

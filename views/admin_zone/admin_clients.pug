@@ -10,15 +10,15 @@ block content
     div.dropdown-divider
     .container
         .row
-            .col-12.col-lg-10.offset-lg-1
+            .col-12.col-lg-10.offset-lg-1.col-xl-8.offset-xl-2
                 h3.my-2.mr-2.d-inline Nuevo cliente
                 span
                     button(type="button", title="Añadir nuevo cliente" data-toggle='modal', data-target='#newClient').text-success.alone-buttons
                         i.fa.fa-2x.fa-fw.fa-user
                 .d-flex.justify-content-end
-                    form(action="/admin/pet/search" method="POST").mt-2
+                    form(action="/admin/clients/search" method="POST").mt-2
                         .input-group.search-bar
-                            input(type="search" placeholder="Buscar clientes" aria-describedby="search_icon")
+                            input#clientSearch(type="search" placeholder="Buscar clientes" aria-describedby="search_icon")
                             span#search_icon.input-group-btn
                             button(type="submit").btn.btn-warning
                                 i.fa.fa-fw.fa-search
@@ -41,7 +41,7 @@ block content
                                 button(type="button" title="Añadir nueva mascota" data-toggle='modal', data-target="#newPet" + client._id).alone-buttons
                                     i.fa.fa-fw.fa-paw.text-danger
                             td= client.personal.name
-                            td#phones= client.contact.phoneOne + "/" + client.contact.phoneTwo        
+                            td.phones= client.contact.phoneOne + "/" + client.contact.phoneTwo        
                             td= client.contact.email
                             td.petInfo
                                 button(type="button" title="Ver datos de mascota").alone-buttons.petDisplay.text-warning
@@ -61,6 +61,6 @@ block scripts
     script(src='../../js/pet_control.js')
     script(src='../../js/search_bar.js')
     script(src='../../js/pet_display.js')
-    
+
 
 
