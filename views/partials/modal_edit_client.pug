@@ -1,4 +1,4 @@
-div(id="clientEdit" + index, tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true').modal.fade
+div(id="clientEdit" + index, tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true').modal.fade.client
     .modal-dialog(role='document')
         .modal-content
             .modal-header
@@ -12,7 +12,7 @@ div(id="clientEdit" + index, tabindex='-1', role='dialog', aria-labelledby='exam
                 .container-fluid
                     .row
                         .col-12
-                            form#editClient(action="/admin/clients/edit" method="POST")
+                            form.editClient(action="/admin/clients/edit" method="POST")
                                 .card
                                     .card-header
                                         h2.text-center.text-success Datos generales

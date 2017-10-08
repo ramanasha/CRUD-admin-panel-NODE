@@ -197,8 +197,8 @@ router.post('/admin/clients/new', (request, response, next) => {
     })
 })
 
-router.post('/admin/clients/remove/:index', (request, response, next) => {
-    Client.findByIdAndRemove(clientsData[request.params.index]._id,
+router.post('/admin/clients/remove', (request, response, next) => {
+    Client.findByIdAndRemove(request.body.clientID,
         (error, client) => {
             if (error) return next(error);
             console.log(`REMOVED CLIENT WITH SUCCESS: ${JSON.stringify(client, undefined, 2)}`);

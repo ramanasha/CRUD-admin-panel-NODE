@@ -1,4 +1,4 @@
-div(id="client" + index, tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true').modal.fade
+div(id="client" + index, tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true').modal.fade.client
     .modal-dialog.modal-lg(role='document')
         .modal-content
             .modal-header
@@ -76,6 +76,7 @@ div(id="client" + index, tabindex='-1', role='dialog', aria-labelledby='exampleM
 
                                 .card-footer.d-flex.justify-content-center.align-items-center
                                     form.delete(action="/admin/clients/remove/" + index, method="POST")
+                                        input(type="hidden" name="clientID" value=client._id)
                                         button(type="submit").btn.alone-buttons
                                             i.fa.fa-2x.fa-fw.fa-trash.text-danger
             .modal-footer
