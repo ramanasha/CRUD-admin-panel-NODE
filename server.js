@@ -40,7 +40,7 @@ db.then(() => {
 
     //Middleware to authenticate admin routes
     const loggedIn = require('./middlewares/authentication');
-    app.use(loggedIn);
+    //app.use(loggedIn);
 
     app.use(indexRoute)
         .use(loginRoute)
