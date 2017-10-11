@@ -156,7 +156,7 @@ block content
                                                     .d-flex.justify-content-around.vaccine
                                                         input.vaccines(type="hidden" name="vaccines" value=0)
                                                         h4 Vacunas
-                                                        button(type="button" title="Nueva vacuna").btn.alone-buttons
+                                                        button(type="button" title="Nueva vacuna").btn.alone-buttons.newVaccine
                                                             i.fa.fa.fa-fw.fa-plus-square.text-success
                                                     div.vaccineGroup.list-group
                                                         each vaccine in petData.clinicalData.vaccines
@@ -168,7 +168,7 @@ block content
                                                     .d-flex.justify-content-around.diseases
                                                         input.diseases(type="hidden" name="diseases" value=0)
                                                         h4 Enfermedades
-                                                        button(type="button" title="Nueva enfermedad").btn.alone-buttons
+                                                        button(type="button" title="Nueva enfermedad").btn.alone-buttons.newDisease
                                                             i.fa.fa-fw.fa-plus-square.text-success
                                                     .diseasesGroup.list-group
                                                         each disease in petData.clinicalData.diseases
