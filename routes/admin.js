@@ -144,7 +144,7 @@ router.post('/admin/clients/search', (request, response, next) => {
             if (error) return next(error);
             response.send(client);
         })
-    } else if (/([0-9]|[a-z])@{1}/i.test(request.body.clientData)) {
+    } else if (/([0-9]|[a-z])@{1}/gi.test(request.body.clientData)) {
         reg = new RegExp(request.body.clientData, "i");
         Client.find({ 'contact.email': { $regex: reg } }, (error, client) => {
             if (error) return next(error);
