@@ -7,5 +7,5 @@ Technologies used on this project:
 -  Express.js
 
 ## Site online
-You can visit this site on [DogTraining](https://www.miriamrico.herokuapp.com) *(spanish language)*
+You can visit this site on [DogTraining](https://miriamrico.herokuapp.com/) *(spanish language)*
 
